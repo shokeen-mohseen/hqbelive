@@ -1,0 +1,177 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "HQBE": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/HQBE",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              {
+                "glob": "favicon.png",
+                "input": "src",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              "src/favicon.ico",
+              "src/assets",
+              "src/.htaccess"
+            ],
+            "styles": [
+              "src/styles.css",
+              "src/assets/stylesheets/style.css",
+              "src/assets/stylesheets/toastr.css"
+            ],
+            "scripts": [
+              "src/assets/js/tinymce.min.js",
+              "src/assets/js/jquery.min2.1.3.js",
+              "src/assets/js/jquery.tinymce.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/bootstrap-select.js",
+              "src/assets/js/select2.min.js",
+              "src/assets/js/jquery-migrate-1.4.1.min.js",
+              "src/assets/js/jquery-ui.js",
+              "src/assets/js/jquery.form.min.js",
+              "src/assets/js/slick.js",
+              "src/assets/js/jquery.easing.min.js",
+              "src/assets/js/jquery.formatter.min.js",
+              "src/assets/js/jquery.loadingModal.min.js",
+              "src/assets/js/jquery.mask.js",
+              "src/assets/js/jquery.maskedinput.js",
+              "src/assets/js/jquery.showLoading.min.js",
+              "src/assets/js/jquery.sticky-sidebar.js",
+              "src/assets/js/admin-functions.js",
+              "src/assets/js/autosize.js",
+              "src/assets/js/autosize.min.js",
+              "src/assets/js/chosen.jquery.min.js",
+              "src/assets/js/feather.min.js",
+              "src/assets/js/functions.js",
+              "src/assets/js/gmap.js",
+              "src/assets/js/html5.js",
+              "src/assets/js/menu.js",
+              "src/assets/js/modal.js",
+              "src/assets/js/password.js",
+              "src/assets/js/TinyMCE.js",
+              "src/assets/js/tooltip.js",
+              "src/assets/js/zxcvbn.js",
+              "src/assets/phpe-bundle.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "HQBE:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "HQBE:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "HQBE:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "HQBE:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "HQBE:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "HQBE",
+  "cli": {
+    "analytics": "9df4c224-8016-4ad5-bc5c-32dc799255ba"
+  }
+}

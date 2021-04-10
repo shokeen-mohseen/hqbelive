@@ -1,0 +1,9 @@
+<!-- Body Container -->
+<div class="container body-container">
+  <div class="col-md-8 col-lg-6 m-auto text-center card d-block static-popup">
+	   
+    <h5 class="text-uppercase mt-4 mb-3" *ngIf="phonePeFlag=='no'">Cannot load this page</h5>
+    <h5 class="text-uppercase mt-4 mb-3" *ngIf="phonePeFlag=='yes' && !errorMsg">Please wait verifying your booking.</h5>
+    <h5 class="text-uppercase mt-4 mb-3" *ngIf="errorMsg">{{errorMsg}}</h5>
+  </div>
+</div>

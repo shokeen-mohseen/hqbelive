@@ -1,0 +1,31 @@
+
+<div class="page-hero__none"></div>
+
+<div id="content">
+  <section class="page-section">
+    <div class="container clearfix">
+      <div class="section-header">
+        <h2>Your booking history</h2>
+        <p class="section-header__info"></p>
+      </div>
+      
+      <div class="section-content">
+        <div class="booking-history">
+          <div class="items">
+            
+            <div class="item order-item" *ngFor="let item of bookingHistory">
+              <div class="item__status">Open</div>
+              <div class="item__reference-number">Reference Number : <strong>{{item.booking.booking_number}}</strong></div>
+              <div class="item__date">Booking Date : <strong>{{item.booking.booking_date}}</strong></div>
+              <p><em>Your package details are:</em><br /><strong>{{ item.packages[0].title }}</strong>
+                <!--<br />Location: Bir Billing, India<br />1N/2D</p> -->
+                </p>
+              <a routerLink="/booking-detail/{{item.booking.booking_number}}" class="link-btn link-btn__sm">View Details</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

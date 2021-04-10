@@ -1,0 +1,193 @@
+
+<div class="floating-buttons">
+    <a href="javascript:void(0);" class="link" id="showContact" (click)="showContact()" data-hqbe-modal="contact-overlay"><i data-feather="mail"></i></a>
+    <a href="javascript:void(0);" style="display: none;" id="successOverlay" data-hqbe-modal="message-overlay"></a>
+    <a href="javascript:void(0);" id="errorOverlay" style="display: none;" data-hqbe-modal="message-overlay"></a>
+  </div>
+  
+  <footer class="site-footer">
+  
+    <div class="container clearfix">
+     
+      <ul>
+        <li><a routerLink="/terms">Terms of User</a></li>
+        <li><a routerLink="/privacy">Privacy Policy</a></li>
+        <li><a routerLink="/user-agreement">User Agreement</a></li>
+      </ul>
+	  <ul class="socialIcons">
+        <li class="facebook">
+			<a href="https://www.facebook.com/Hqbeclub/" target="_blank">
+          		<fa-icon [icon]="faFacebook"></fa-icon>
+          	</a>
+		</li>
+        <li class="linkdin">
+			<a href="https://in.linkedin.com/company/hqbeclub" target="_blank">
+         		 <fa-icon [icon]="faLinkedin"></fa-icon>
+        	</a>
+		</li>
+        <li class="twitter">
+			<a href="https://twitter.com/hqbeclub" target="_blank">
+         	 	<fa-icon [icon]="faTwitter"></fa-icon>
+        	</a>
+		</li>
+        <li class="pinterest"><a href="http://www.pinterest.com/hqbeclub/" 
+          target="_blank"><fa-icon [icon]="faPinterestP"></fa-icon>
+          </a>
+        </li>
+      </ul>
+      <!-- <div>
+		<ul >
+			<li class="facebook">
+				<a href="https://www.facebook.com/Hqbeclub/" target="_blank">
+					  <fa-icon [icon]="faFacebook"></fa-icon>
+				  </a>
+			</li>
+			<li class="linkdin">
+				<a href="https://in.linkedin.com/company/hqbeclub" target="_blank">
+					  <fa-icon [icon]="faLinkedin"></fa-icon>
+				</a>
+			</li>
+			<li class="twitter">
+				<a href="https://twitter.com/hqbeclub" target="_blank">
+					  <fa-icon [icon]="faTwitter"></fa-icon>
+				</a>
+			</li>
+			<li class="pinterest"><a href="http://www.pinterest.com/hqbeclub/" 
+			  target="_blank"><fa-icon [icon]="faPinterestP"></fa-icon>
+			  </a>
+			</li>
+		</ul>
+	</div> -->
+      <p class="copyright">&copy; {{year}} All rights reserved.<br />HQBE MOBILE TECHNOLOGIES Pvt. Ltd</p>
+    </div>
+  </footer>
+  
+  <div id="contact-overlay" class="hqbe-modal">
+      <div class="hqbe-modal__content">
+        <div class="container clearfix">
+          <div class="hqbe-modal__header">
+            <button class="hqbe-modal__btn-close" (click)="hideModal()">&times;</button>
+            <h2>Contact Us</h2>
+            <p>Share given form for a quick response.</p>
+          </div>
+          
+          <div class="custom-form">
+            <div class="thank-you-message" *ngIf="successMsg"> {{ successMsg }}</div>
+            <form id="frmEnquire" *ngIf="!successMsg" name="frmEnquire" [formGroup] = "contactForm"  class="ajax-form"  autocomplete="off">
+              <p><em><small>All fields marked with an asterisk (*) are required.</small></em></p>
+              
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                  <div class="field-group">
+                    <label for="destination">Location<span class="required">*</span></label>
+                    <input type="text" formControlName="destination" placeholder="Location" class="field-input required" />
+                  </div>
+                </div>
+              </div>
+              
+              <!-- <div class="field-group field-group__other">
+                <label for="place">Place</label>
+                <input type="text" id="place" name="place" placeholder="Name of the place" class="field-input" />
+              </div> -->
+              <!-- <div class="field-group field-group__location">
+                <label for="package">Package</label>
+                <select id="package" name="package" class="field-input">
+                  <option value="">Select Package</option>
+                </select>
+              </div>
+              
+              <div class="field-group field-group__location">
+                <label for="property_type">Property Type</label>
+                <select id="property_type" name="property_type" class="field-input">
+                  <option value="">Select Property Type</option>
+                </select>
+              </div> -->
+              
+              
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  <div class="field-group">
+                    <label for="inDate">Check-in Date<span class="required">*</span></label>
+                    <input type="text" formControlName="inDate" id="inDate" placeholder="Check-in Date" class="field-input field-datepicker required" />
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <div class="field-group">
+                    <label for="adults">Adults (12yrs &amp; above)<span class="required">*</span></label>
+                    <input type="number"  formControlName="quantityAdult" id="adults" name="adults" min="2" placeholder="Adults above 12yrs" class="field-input required" />
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <div class="field-group">
+                    <label for="children">Children (below 12 yrs)</label>
+                    <input type="number" formControlName="quantityChildren" id="children" name="children" min="0" placeholder="Children below 12 yrs" class="field-input" />
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  <div class="field-group">
+                    <label for="contact_number">Contact Number<span class="required">*</span></label>
+                    <input type="text" formControlName="guestMobile" id="contact_number" name="contact_number" placeholder="Contact number" class="field-input required" />
+                  </div>
+                </div>
+  
+                <div class="col-md-4 col-sm-12">
+                  <div class="field-group">
+                    <label for="your_email">Email Address<span class="required">*</span></label>
+                    <input type="text" formControlName="guestEmail" id="your_email" name="your_email" placeholder="Your email address" class="field-input required email" />
+                  </div>
+                </div>
+  
+                <div class="col-md-4 col-sm-12">
+                  <div class="field-group">
+                    <label for="your_name">Name<span class="required">*</span></label>
+                    <input type="text" formControlName="guestName" id="your_name" name="your_name" placeholder="Your name" class="field-input required" />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="field-group" style="display: none;">
+                <label for="coupon_code">Coupon code (If you have)</label>
+                <input type="text" id="coupon_code" name="coupon_code" placeholder="Coupon code (If you have)" class="field-input required" />
+              </div>
+              <div class="field-group">
+                <label for="your_message">Message</label>
+                <textarea rows="2" formControlName="message" id="your_message" name="your_message" placeholder="Enter your message here..." class="field-input field-textarea"></textarea>
+              </div>
+              <!-- <div class="field-group">
+                <div class="g-recaptcha" data-theme="light" data-sitekey="6Lfu78kUAAAAAEwJoJtP0nGx9BTvOZyBmC_iDhj9"></div>
+              </div> -->
+              <div class="field-group-submit">
+                <input type="submit" (click)="submitForm()" value="Submit" class="field-submit" />
+              </div>
+              <div class="clearfix"></div>
+              <div class="form-submit-errors" tabindex="0" style="display: block;" *ngIf="errors.length">
+                <p *ngFor="let item of errors"> {{item}}</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <div id="message-overlay" class="hqbe-modal">
+    <div class="hqbe-modal__content">
+      <div class="container clearfix">
+        <div class="hqbe-modal__header">
+          <button class="hqbe-modal__btn-close" (click)="hideModal()">&times;</button>
+          <h2>Message</h2>
+          <p>Share given form for a quick response.</p>
+        </div>
+        
+        <div class="custom-form">
+          <div class="thank-you-message"></div>
+          <div class="clearfix"></div>
+          <div class="form-submit-errors" tabindex="0" style="display: block;" *ngIf="errors.length">
+            <p *ngFor="let item of errors"> {{item}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

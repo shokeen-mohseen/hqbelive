@@ -1,0 +1,23 @@
+<header class="site-header">
+    <div class="container clearfix">
+      <h1 class="site-title"><a routerLink="/">HQBE</a></h1>
+      <h2 class="tagline">Life Beyond Work</h2>
+      
+      <div class="ms"></div>
+      <button class="menu-toggle"><span>Menu</span></button>
+      <nav class="site-navigation">
+        <ul>
+          <li><a routerLink="/faq">FAQ</a></li>
+          <li><a href="https://www.hqbe.in/blog/" *ngIf="!isPhonePe" target="_blank">Blog</a></li>
+          <li *ngIf="loggedIn"><a href="javascript:void(0);">Welcome, {{userName}}</a></li>
+          <li *ngIf="!loggedIn && isPhonePe"><a routerLink="/phonepe-login">Login</a></li>
+          <li *ngIf="!loggedIn && !isPhonePe"><a routerLink="/login">Login / Signup</a></li>
+          <li *ngIf="loggedIn"><a routerLink="/booking-history">Booking History</a></li>
+          <li *ngIf="loggedIn "><a routerLink="/user-profile">Profile</a></li>
+          <li *ngIf="loggedIn"><a routerLink="/refer-n-earn">Refer n Earn</a></li>
+          <li *ngIf="loggedIn && !isPhonePe"><a href="javascript:void(0);" (click)="logout()">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+    

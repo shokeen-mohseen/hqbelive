@@ -1,0 +1,76 @@
+<div class="page-hero__none"></div>
+
+<div id="content" class="page-package">
+  <section class="page-section" ng-show="currentPackage">
+    <div class="container clearfix">
+      <div class="row flex-row-reverse">
+        <div class="col-md-4 offset-md-1 col-sm-12" *ngIf="currentPackage">
+          <div class="section-header package-header package-header__right">
+            <div class="package-meta">
+              <div class="item item__location"><i data-feather="map-pin"></i> {{currentPackage.location}}, {{currentPackage.country}}</div>
+            </div>
+            <div class="item package-duration"><i data-feather="clock"></i>{{currentPackage.duration}}</div>
+            <h2>{{currentPackage.package_title}}</h2>
+            <div class="package-price margin-bottom-none">
+              <div class="regular-price"><span>&#x20b9; {{currentPackage.price}}</span></div>
+              <div class="deal-price">&#x20b9; {{currentPackage.strike_price}}<span>per person on twin sharing</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7 col-sm-12">
+          <div class="section-header">
+            <h2>Booking Details</h2>
+            <p></p>
+          </div>
+          <div class="section-content">
+            <div id="frmChekout" class="custom-form">
+                <form [formGroup] = "cartForm" (ngSumit)="onSubmit()" autocomplete="off">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                      <div class="field-group">
+                        <label for="checkInDate">Check-in Date<span class="required">*</span></label>
+                        <input type="text" readonly="readonly" placeholder="dd-mm-yyyy" required formControlName="checkInDate" id="checkInDate" placeholder="Check-in Date" class="field-input required" />
+                      </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                      <div class="field-group">
+                        <label for="adults">Above 12 Yrs<span class="required">*</span></label>
+                        <input type="number" required formControlName="quantityAdult" min="2" placeholder="Adults above 12yrs" class="field-input required" />
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                      <div class="field-group">
+                        <label for="children">Between 6-12 Yrs</label>
+                        <input type="number" formControlName="quantityChildren" min="0" placeholder="Children below 12 yrs" class="field-input" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="field-group">
+                    <label for="your_name">Name<span class="required">*</span></label>
+                    <input type="text" required formControlName="guestName" placeholder="Your name" class="field-input required" />
+                  </div>
+                  <div class="field-group">
+                    <label for="contact_number">Contact Number<span class="required">*</span></label>
+                    <input type="text" required formControlName="guestMobile" placeholder="Contact number" class="field-input required" />
+                  </div>
+                  <div class="field-group">
+                    <label for="your_email">Email Address<span class="required">*</span></label>
+                    <input type="text" required formControlName="guestEmail" placeholder="Your email address" class="field-input required email" />
+                  </div>
+                  <div class="field-group-submit">
+                    <input type="button" (click)="onSubmit()" value="View Summary &amp; Pay" class="field-submit" />
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="form-submit-errors" tabindex="0" style="display: block;" *ngIf="errors.length">
+                    <p *ngFor="let item of errors"> {{item}}</p>
+                  </div>
+                </form>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

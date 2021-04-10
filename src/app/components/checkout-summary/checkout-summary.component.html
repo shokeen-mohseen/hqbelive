@@ -1,0 +1,110 @@
+<div class="page-hero__none"></div>
+
+<div id="content" class="content-package">
+  <section class="page-section">
+    <div class="container clearfix">
+      <div class="section-header">
+        <h2>Booking Summary</h2>
+        <p class="section-header__info">Review your booking</p>
+      </div>
+
+      <div class="section-content" *ngIf="currentPackage">
+        <div class="guest-details">
+          <h3 class="heading4">Guest Details</h3>
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <p><em>Your package details are:</em><br /><strong>{{currentPackage.package_title}}</strong><br />Location: {{currentPackage.location}}, {{currentPackage.country}}<br />{{currentPackage.duration}}</p>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <p><em>Your booking is for:</em><br /><strong>{{cartData.guest_name}}</strong><br />{{cartData.guest_email}}<br />+91 {{cartData.guest_mobile}}</p>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <p><em>Date</em><br /><strong>{{cartData.booking_date}}</strong></p>
+              <p><em>No. of Guests:</em><br />Adult: <strong>{{cartData.quantity}}</strong> / Children: <strong>{{cartData.child_guests}}</strong></p>
+            </div>
+          </div>
+          
+
+          <a routerLink="/checkout" class="link-btn link-btn__sm">Edit</a>
+          
+        </div>
+
+        <div class="billing-details">
+          <h3 class="heading4">Billing Details</h3>
+          <div class="billing-price"><strong>Booking Amount:</strong> <span>&#x20b9; {{ bookingSubTotal }}</span></div>
+          <div class="coupon-code">
+            <p><a href="javascript:void(0);" id="showCoupons"  (click)="showModal()" class="link" data-hqbe-modal="coupon-overlay">Have a coupon code?</a></p>
+            
+            <div class="coupon-applied" *ngIf="couponApplied">
+              <h4>Coupon code applied:</h4>
+              <div class="coupon-applied__code">{{couponCode}}</div>
+              <p>Discount : <strong>&#x20b9; {{couponDiscount}}</strong></p>
+              <a href="javascript:void(0);" (click)="removeCoupon()">Remove coupon code</a>
+            </div>
+
+          </div>
+          
+          <div class="billing-price"><strong>Total Payable:</strong> <span>&#x20b9; {{bookingTotal}}</span></div>
+          <div class="custom-form">
+            <form >
+              
+              <div class="form-group-radio horizontal clearfix" *ngIf="phonePeFlag != 'yes'">
+                <label for="payment_mode_paytm">
+                  <input type="radio" id="payment_mode_paytm" [(ngModel)]="paymentMode" name="paymentMode" class="input-field" value="paytm" /><i></i><span><img src="/assets/images/paytm-logo.png" style="height: 20px; width: auto" alt="Paytm" /></span>
+                </label>
+                <label for="payment_mode_razorpay">
+                  <input type="radio" id="payment_mode_razorpay" checked="checked" [(ngModel)]="paymentMode" name="paymentMode" class="input-field" value="razorpay" /><i></i> <span><img src="https://upload.wikimedia.org/wikipedia/en/8/89/Razorpay_logo.svg" style="height: 24px; width: auto;" alt="Razorpay" /></span>
+                </label>
+                <div class="clear"></div>
+              </div>
+              <br />
+
+              <div class="field-group-submit">
+                <button (click)="checkCart('payment')" class="field-submit" >Pay Now</button>
+              </div>
+
+              <div class="form-submit-errors" tabindex="0" style="display: block;" *ngIf="errors.length">
+                <p *ngFor="let item of errors"> {{item}}</p>
+              </div>
+
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div id="coupon-overlay" class="hqbe-modal">
+  <div class="hqbe-modal__content">
+    <div class="container clearfix">
+      <div class="hqbe-modal__header">
+        <button class="hqbe-modal__btn-close" (click)="hideModal()">&times;</button>
+        <h2>Apply Coupon Code</h2>
+        <p class="section-header__info"></p>
+      </div>
+      <div class="coupon-form">
+        <form action="" method="post">
+          <div class="field-group">
+            <input type="text" [(ngModel)]="couponCode" name="couponCode" placeholder="Coupon code (If you have)" class="field-input required" />
+            <input type="submit" (click)="applyCoupon()" value="Apply" class="field-submit" />
+          </div>
+        </form>
+      </div>
+
+      <div class="available-coupons" *ngIf="couponList.length > 0">
+        <h3>Best coupon code for you</h3>
+        <div class="item" *ngFor="let item of couponList">
+          <div class="item__code">{{item.coupon_code}}</div>
+          <div class="item__title">valid till {{item.end_date | date : 'dd.MM.yyyy'}}</div>
+          <div class="item__description" *ngIf="item.discount_type==3">{{item.coupon_description}}</div>
+          <div class="item__description" *ngIf="item.discount_type==2">Discount of {{item.discount}}%.</div>
+          <div class="item__description" *ngIf="item.discount_type==1">Discount of &#x20b9; {{item.discount}}.</div>
+          <button class="item__btn-apply" (click)="applyCoupon(item.coupon_code)">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

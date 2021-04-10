@@ -1,0 +1,121 @@
+<div class="page-hero__none"></div>
+
+<div id="content">
+  <section class="page-section">
+    <div class="container clearfix">
+      <div class="section-header order-details-header" *ngIf="bookingData">
+        <h2>Order Details</h2>
+        <div class="order-item">
+          <div class="item__status canceled">Open</div>
+          <div class="item__reference-number">Reference Number : <strong>{{bookingData.booking_number}}</strong></div>
+          <div class="item__date">Booking Date : <strong>{{ bookingData.booking_date}}</strong></div>
+          <!-- <div class="item__coupon">Coupon Applied : <strong>PPE400</strong> (&#x20b9; 400/- cashback on PhonePe)</div> -->
+        </div>
+      
+        <h3 class="heading4">Booking Details</h3>
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <p><em>Your package details are:</em><br /><strong>{{bookingPackage.package_title}}</strong><br />Location: {{bookingPackage.location}}, {{bookingPackage.country}}<br />{{bookingPackage.duration}}</p>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <p><em>Your booking is for:</em><br /><strong>{{bookingData.name}}</strong><br />{{bookingData.email}}<br />+91 {{bookingData.mobile}}</p>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <p><em>Date &amp; Time</em><br /><strong>{{bookingData.booking_date}}</strong></p>
+            <p><em>No. of Guests:</em><br />Adult: <strong>{{bookingData.guests}}</strong> / Children: <strong>{{bookingData.child_guests}}</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-section" *ngIf=" bookingPackage && (bookingPackage.exclusion || bookingPackage.inclusion || bookingPackage.itinerary) ">
+    <div class="container clearfix">
+      <div class="row">
+        <div class="col-md-7 col-sm-12">
+          <div class="package-content__wrapper margin-top-none">
+            <div class="package-content"  *ngIf=" bookingPackage.exclusion || bookingPackage.inclusion ">
+              <div class="section-header">
+                <h2  *ngIf="bookingPackage.inclusion">Inclusion and Exclusion</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <h3 *ngIf="bookingPackage.inclusion">Inclusion</h3>
+                <p [innerHtml]="bookingPackage.inclusion"></p>
+                <h3 *ngIf="bookingPackage.exclusion">Exclusion</h3>
+                <p [innerHtml]="bookingPackage.exclusion"></p>
+              </div>
+            </div>
+
+            <div class="package-content"  *ngIf=" bookingPackage.itinerary">
+              <div class="section-header">
+                <h2>Itinerary</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <p [innerHtml]="bookingPackage.itinerary"></p>
+              </div>
+            </div>
+
+            <div class="package-content"  *ngIf=" bookingPackage.things_to_carry">
+              <div class="section-header">
+                <h2>Things To Carry</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <p [innerHtml]="bookingPackage.things_to_carry"></p>
+              </div>
+            </div>
+
+            <div class="package-content"  *ngIf=" bookingPackage.dos || bookingPackage.donts ">
+              <div class="section-header">
+                <h2  *ngIf="bookingPackage.inclusion">Do's and Don'ts</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <h3 *ngIf="bookingPackage.dos">Do's</h3>
+                <p [innerHtml]="bookingPackage.dos"></p>
+                <h3 *ngIf="bookingPackage.donts">Dont's</h3>
+                <p [innerHtml]="bookingPackage.donts"></p>
+              </div>
+            </div>
+
+            <div class="package-content" *ngIf="bookingPackage.location_description">
+              <div class="section-header">
+                <h2>About {{ bookingPackage.location}}, {{bookingPackage.country}}</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <p [innerHtml]="bookingPackage.location_description"></p>
+              </div>
+            </div>
+
+            <div class="package-content" *ngIf="bookingPackage.booking_policy">
+              <div class="section-header">
+                <h2>Booking Policy</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <p [innerHtml]="bookingPackage.booking_policy"></p>
+              </div>
+            </div>
+
+            <div class="package-content" *ngIf="bookingPackage.cancellation_policy">
+              <div class="section-header">
+                <h2>Cancellation &amp; Refund Policy</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <p [innerHtml]="bookingPackage.cancellation_policy"></p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        
+      </div>
+    </div> 
+  </div>
+  
+</div>

@@ -1,0 +1,245 @@
+<div class="page-hero package-hero" *ngIf="currentPackage">
+  <figure [ngStyle]=" { 'background-image': 'url(' + currentPackage.image + ')'} "></figure>
+  <div class="page-hero__content">
+    <div class="container">
+      <p [innerHtml]="currentPackage.package_description"></p>
+
+      
+      <!-- <a *ngIf="packageGallery.length > 0" href="javascript:void(0);" class="link-btn link-btn__gallery" data-hqbe-modal="photo-gallery-overlay">View Photos</a> -->
+      <button *ngIf="packageGallery.length > 0" href="#" class="link-btn link-btn__gallery" 
+        data-hqbe-modal="photo-gallery-overlay" (click)="open(mymodal)">View Photos</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="page-section" *ngIf="currentPackage">
+  <a (click)= "addToCart()" href="javascript:void(0);" ng-show="currentPackage" class="link-btn link-btn__book">Book Now</a>
+  <div class="container clearfix">
+    <div class="page-sections">
+      <div class="row">
+        <div class="col-lg-7 col-md-12">
+          <div class="section-header package-header">
+            <div class="package-meta">
+              <div class="item item__location"><i data-feather="map-pin"></i>{{currentPackage.location}}, {{currentPackage.country}}</div>
+            </div>
+            <div class="item package-duration"><i data-feather="clock"></i>{{currentPackage.duration}}</div>
+            <h2>{{currentPackage.package_title}}</h2>
+            <div class="package-price">
+              <div class="regular-price"><span>&#x20b9; {{currentPackage.price}}</span></div>
+              <div class="deal-price">&#x20b9; {{currentPackage.strike_price}}<span>per person</span></div>
+            </div>
+            <p><a (click)= "addToCart()" href="javascript:void(0);" ng-show="currentPackage" class="link-btn link-btn__checkout">Book Now</a></p>
+          </div>
+
+          <div class="d-lg-none">
+            <div class="package-terms clearfix package-sidebar__block">
+              <div class="item" *ngIf="currentPackage.min_pax">Min Booking<br /><span>{{currentPackage.min_pax}} persons</span></div>
+              <div class="item" *ngIf="currentPackage.property_type">Property Type<br /><span>{{currentPackage.property_type}}</span></div>
+              <div class="item" *ngIf="currentPackage.end_date">Valid up to<br /><span>{{currentPackage.end_date}}</span></div>
+              <div class="item" *ngIf="currentPackage.validity">Validity<br /><span>{{currentPackage.validity}}</span></div>
+            </div>
+            <div class="package-amenities clearfix" *ngIf="currentPackage.aminities">
+              <h3 class="heading4">Amenities</h3>
+              <ul>
+                <li *ngFor="let item of currentPackage.aminities">{{ item.title }}</li>
+              </ul>
+            </div>
+            
+            <div class="package-contact align-center clearfix">
+              <p>Have any questions or looking for any customization</p>
+              <a href="whatsapp://send?phone=918920608942&text=hello" class="link-btn link-btn__sm link-btn__whatsapp" *ngIf="!isPhonePe">WhatsApp</a>
+              <a href="javascript:void(0);" class="link-btn link-btn__sm link-btn__contact" data-hqbe-modal="contact-overlay">Contact Us</a>
+            </div>
+          </div>
+
+          <div class="package-highlights clearfix" *ngIf="currentPackage.highlights">
+            <h3 class="heading4">Highlights</h3>
+            <p [innerHtml]="currentPackage.highlights"></p>
+          </div>
+
+          <div class="package-content__wrapper">
+            <div class="package-content" *ngIf="currentPackage.exclusion || currentPackage.inclusion">
+              <div class="section-header">
+                <h2>Inclusion and Exclusion</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <h3 *ngIf="currentPackage.inclusion">Inclusion</h3>
+                <p [innerHtml]="currentPackage.inclusion"></p>
+              
+                <h3 *ngIf="currentPackage.exclusion">Exclusion</h3>
+                <p [innerHtml]="currentPackage.exclusion"></p>
+              </div>
+            </div>
+
+            <div class="package-content" *ngIf="currentPackage.itinerary">
+              <div class="section-header">
+                <h2>Itinerary</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <p [innerHtml]="currentPackage.itinerary"></p>
+              </div>
+            </div>
+
+            <div class="package-content" *ngIf="currentPackage.things_to_carry">
+              <div class="section-header">
+                <h2>Things to carry section</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <p [innerHtml]="currentPackage.things_to_carry"></p>
+              </div>
+            </div>
+
+            <div class="package-content" *ngIf="currentPackage.dos || currentPackage.donts">
+              <div class="section-header">
+                <h2>Do's and Don'ts</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <h3 *ngIf="currentPackage.dos">Do's</h3>
+                <p [innerHtml]="currentPackage.dos"></p>
+              
+                <h3 *ngIf="currentPackage.donts">Don'ts</h3>
+                <p [innerHtml]="currentPackage.donts"></p>
+              </div>
+            </div>
+
+            <div class="package-content" *ngIf="currentPackage.location_description">
+              <div class="section-header">
+                <h2>About {{ currentPackage.location}}, {{currentPackage.country}}</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <p [innerHtml]="currentPackage.location_description"></p>
+              </div>
+            </div>
+
+            <div class="package-content" *ngIf="currentPackage.booking_policy">
+              <div class="section-header">
+                <h2>Booking Policy</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <p [innerHtml]="currentPackage.booking_policy"></p>
+              </div>
+            </div>
+
+            <div class="package-content" *ngIf="currentPackage.cancellation_policy">
+              <div class="section-header">
+                <h2>Cancellation &amp; Refund Policy</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <p [innerHtml]="currentPackage.cancellation_policy"></p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-lg-4 offset-lg-1 col-md-12">
+          <div id="sticky-sidebar-pdetail">
+            <div class="package-sidebar">
+              <div class="package-terms clearfix package-sidebar__block">
+                <div class="item" *ngIf="currentPackage.min_pax">Min Booking<br /><span>{{currentPackage.min_pax}} persons</span></div>
+                <div class="item" *ngIf="currentPackage.property_type">Property Type<br /><span>{{currentPackage.property_type}}</span></div>
+                <div class="item" *ngIf="currentPackage.end_date">Valid up to<br /><span>{{currentPackage.end_date | date}}</span></div>
+                <div class="item" *ngIf="currentPackage.validity">Validity<br /><span>{{currentPackage.validity}}</span></div>
+              </div>
+
+              <div class="package-amenities clearfix" *ngIf="currentPackage.aminities">
+                <h3 class="heading4">Amenities</h3>
+                <ul>
+                  <li *ngFor="let item of currentPackage.aminities">{{item.title}}</li>
+                </ul>
+              </div>
+
+              <a (click)= "addToCart()" href="javascript:void(0);" ng-show="currentPackage" class="link-btn link-btn__checkout">Book Now</a>
+            </div>
+
+            <div class="package-contact align-center clearfix">
+              <p>Have any questions or looking for any customization</p>
+              <a href="whatsapp://send?phone=918920608942&text=hello" class="link-btn link-btn__sm link-btn__whatsapp" *ngIf="!isPhonePe">WhatsApp</a>
+              <a href="javascript:void(0);" class="link-btn link-btn__sm link-btn__contact" data-hqbe-modal="contact-overlay">Contact Us</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="page-section" *ngIf="featuredPackages.length > 0">
+  <div class="container clearfix">
+    <div class="section-header">
+      <h2>Top Rated Experiences on HQBE</h2>
+      <p class="section-header__info">Unique adventures to break away</p>
+    </div>
+    <div class="package-list package-list__slider slider">
+      
+      <a *ngFor = "let item of featuredPackages"  routerLink="/package-detail/{{item.slug}}" class="item">
+      <figure [ngStyle]="{'background-image': 'url(' + item.image + ')'}"></figure>
+        <div class="item__content">
+          <div class="item__meta item__duration"><i data-feather="clock"></i> {{item.property_type }}</div>
+          <div class="item__meta item__location"><i data-feather="map-pin"></i> {{item.location}} {{item.country}}</div>
+          <h3>{{ item.package_title }}</h3>
+          <div class="item__price">
+            <div class="regular-price"><span>&#x20b9; {{item.price }}</span></div>
+            <div class="offer-price">&#x20b9; {{item.strike_price}}<span>per person</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- <ng-template #mymodal let-modal>
+<div id="photo-gallery-overlay" class="hqbe-modal modal" role="dialog">
+  <div class="hqbe-modal__content">
+    <div class="container clearfix">
+      <button class="hqbe-modal__btn-close">&times;</button>
+      <div class="items home-hero-slider">
+        <div class="item" *ngFor="let item of packageGallery">
+          <div class="item__image">
+            <img src="{{item.image}}" alt="" class="img-fluid" /></div>
+          <div class="item__caption"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</ng-template> -->
+<ng-template #mymodal let-modal class="img-model">
+  
+  <!-- <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"></h4>
+    <button class="hqbe-modal__btn-close close" (click)="modal.dismiss('Cross click')">&times;</button>
+    
+  </div> -->
+  <div class="modal-body">
+    <div class="container-fluid">
+    <div class="items">
+      <section class="hqbe-product-img-slider" style="margin-top: 44px;">
+          <div class="container clearfix" *ngFor="let item of packageGallery">
+            <div class="item__image">
+              <img src="{{item.image}}" alt="" class="img-fluid" /></div>
+            <div class="item__caption"></div>
+          </div>
+    	</section>
+    </div>
+ </div>
+ 
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+</ng-template>
+

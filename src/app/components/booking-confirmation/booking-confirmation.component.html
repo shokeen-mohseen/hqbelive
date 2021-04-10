@@ -1,0 +1,73 @@
+<div class="page-hero__none"></div>
+
+<div id="content">
+  <section class="page-section package-section package-section__summary">
+    <div class="container clearfix">
+      <div class="section-header">
+        <h2>Your booking is confirmed.</h2>
+        <p class="section-header__info"></p>
+      </div>
+      
+      <div class="section-content" *ngIf="currentPackage">
+        <div class="guest-details">
+          <h3 class="heading4">Guest Details</h3>
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <p><em>Your package details are:</em><br /><strong>{{currentPackage.package_title}}</strong><br />Location: {{currentPackage.location}}, {{currentPackage.country}}<br />{{currentPackage.duration}}</p>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <p><em>Your booking is for:</em><br /><strong>{{cartData.name}}</strong><br />{{cartData.email}}<br />+91 {{cartData.mobile}}</p>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <p><em>Date &amp; Time</em><br /><strong>{{cartData.booking_date}}</strong></p>
+              <p><em>No. of Guests:</em><br />Adult: <strong>{{cartData.guests}}</strong> / Children: <strong>{{cartData.child_guests}}</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-section" style="background: #fafafa;" *ngIf=" currentPackage && (currentPackage.exclusion || currentPackage.inclusion || currentPackage.itinerary) ">
+    <div class="container clearfix">
+      <div class="page-sections">
+        <div class="row">
+          <div class="col-md-7 col-sm-12">
+            <div class="package-content" *ngIf=" currentPackage.exclusion || currentPackage.inclusion ">
+              <div class="section-header">
+                <h2  *ngIf="currentPackage.inclusion">Inclusion and Exclusion</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <h3 *ngIf="currentPackage.inclusion">Inclusion</h3>
+                <p [innerHtml]="currentPackage.inclusion"></p>
+                <h3 *ngIf="currentPackage.exclusion">Exclusion</h3>
+                <p [innerHtml]="currentPackage.exclusion"></p>
+              </div>
+            </div>
+
+            <div class="package-content"  *ngIf=" currentPackage.itinerary">
+              <div class="section-header">
+                <h2>Itinerary</h2>
+                <p class="section-header__info"></p>
+              </div>
+              <div class="section-content">
+                <p [innerHtml]="currentPackage.itinerary"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 offset-md-1 col-sm-12">
+            <div id="sticky-sidebar">
+              <div class="package-contact align-center clearfix">
+                <p>Have any questions or looking for any customization</p>
+                <a href="whatsapp://send?phone=918920608942&text=hello" class="link-btn link-btn__sm link-btn__whatsapp" *ngIf="!isPhonePe">WhatsApp</a>
+                <a href="javascript:void(0);" class="link-btn link-btn__sm link-btn__contact" data-hqbe-modal="contact-overlay">Contact Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+  
+</div>

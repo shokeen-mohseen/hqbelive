@@ -1,0 +1,68 @@
+<div class="page-hero__none"></div>
+
+<div id="content" class="page-package">
+  <section class="page-section">
+    <div class="container clearfix">
+      <div class="section-header">
+        <h2>Signup or Login</h2>
+        <p>Enter your mobile to register or login.</p>
+      </div>
+      
+      <div class="custom-form login-form">
+        <form >
+          
+          <div class="row" *ngIf="loginStep==1">
+            <div class="col-md-6 col-sm-12">
+              
+              <div class="field-group">
+                <input type="text" #userMobile name="mobile_number" placeholder="Your mobile number" class="field-input required" />
+                <input type="button" (click)="checkMobile(userMobile.value)" value="Submit" class="link-btn link-btn__submit disabled" />
+              </div>
+
+              <p>
+                By signing in I Agree with the
+                <a [routerLink]="['/terms']" target="_blank" class="cursor-pointer"><u>Terms &amp; Conditions</u></a> &amp;
+                <a [routerLink]="['/user-agreement']" target="_blank" class="cursor-pointer"><u>User Agreement</u></a>
+              </p>
+              
+            </div>
+          </div>
+
+          <div class="row" *ngIf="loginStep==2">
+            <div class="col-md-6 col-sm-12">
+              <p>Please provide few more details</p>
+              <div class="field-group">
+                <input type="text" #userName placeholder="Your Name" class="field-input required" />
+              </div>
+              <div class="field-group">
+                <input type="text" #userEmail placeholder="Your Email" class="field-input required" />
+              </div>
+              <div class="field-group">
+                <input type="text" #referralCode placeholder="Referral Code" class="field-input required" />
+                <input type="button" (click)="createUser(userName.value, userEmail.value, referralCode.value)" value="Submit" class="link-btn link-btn__submit disabled" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row"  *ngIf="loginStep==3">
+            <div class="col-md-6 col-sm-12">
+              <p>Enter OTP sent to your mobile number.<br /><small>The OTP will be valid for 15 minutes.<br />If you didn't received OTP, <a href="javascript:void(0);" (click)="resendOTP()">click here to resend</a>.</small></p>
+              <div class="field-group">
+                <input type="text" #mobileOTP placeholder="Enter OTP" class="field-input required" />
+                <input type="button" (click)="submitOTP(mobileOTP.value)" id="submit-form" name="submit-form" value="Submit" class="link-btn link-btn__submit" />
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+          <div class="form-submit-errors" tabindex="0" style="display: block;" *ngIf="errors.length">
+            <p *ngFor="let item of errors"> {{item}}</p>
+          </div>
+          
+
+        </form>
+
+      </div>
+    </div>
+  </section>
+</div>

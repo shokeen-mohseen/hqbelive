@@ -1,0 +1,241 @@
+
+<div class="home-hero-slider hidden-md-down">
+
+  <div class="slide">
+    <figure  style="background-image: url(&quot;/assets/images/home-slider/img_hero.jpg&quot;);"></figure>
+		<div  class="slide__content">
+			<h2 >Hand piked deals, just for you!</h2>
+			<p >Book incredible things to do around the world.</p>
+		</div>
+  </div>
+
+  <div class="slide">
+    <figure  style="background-image: url(&quot;/assets/images/home-slider/img_hero_2.jpg&quot;);">
+    </figure>
+    <div  class="slide__content">
+      <h2 >Love where you're going</h2>
+      <p >Book incredible things to do around the world.</p>
+    </div>
+  </div>
+ 
+  <div class="slide">
+    <figure  style="background-image: url(&quot;/assets/images/home-slider/img_hero_2.jpg&quot;);"></figure>
+		<div  class="slide__content">
+			<h2 >Love where you're going</h2>
+			<p >Book incredible things to do around the world.</p>
+		</div>
+  </div>
+  <div class="slide">
+    <figure  style="background-image: url(&quot;/assets/images/home-slider/img_hero.jpg&quot;);"></figure>
+		<div  class="slide__content">
+			<h2 >Hand piked deals, just for you!</h2>
+			<p >Book incredible things to do around the world.</p>
+		</div>
+  </div>
+</div>
+
+
+
+<div class="hqbe-activities hidden-md-up" *ngIf="experienceCategory.length > 0">
+  <div class="overlay">
+    <div class="container">
+      <h3>Spice up with these experiences!</h3>
+      <div class="items clearfix">
+        <a *ngFor = "let item of experienceCategory" routerLink="/category/{{item.slug}}" class="item">
+          <img src="{{item.icon}}" alt="{{item.category}}" class="img-fluid" />
+          <span>{{item.category}}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="content">
+ 
+  <section class="page-section" *ngIf="experiencePackages.length > 0">
+    <div class="container clearfix">
+      <div class="section-header">
+        <h2>Top Rated Experiences on HQBE</h2>
+        <p class="section-header__info">Unique adventures to break away</p>
+      </div>
+      <div class="package-list package-list__slider slider">
+        
+        <a *ngFor = "let item of experiencePackages.slice(0, 4)"  routerLink="/package-detail/{{item.slug}}" 
+        class="item">
+        <figure [ngStyle]="{'background-image': 'url(' + item.image + ')'}"></figure>
+          <div class="item__content">
+            <div class="item__meta item__duration"><i data-feather="clock"></i> {{ item.property_type }}</div>
+            <div class="item__meta item__location"><i data-feather="map-pin"></i> {{item.location}} {{item.country}}</div>
+            <h3>{{ item.package_title }}</h3>
+            <div class="item__price">
+              <div class="regular-price"><span>&#x20b9; {{item.price }}</span></div>
+              <div class="offer-price">&#x20b9; {{item.strike_price}}<span>per person</span></div>
+            </div>
+          </div>
+        </a>
+
+        <a routerLink="/packages/top" class="item item__view-all" *ngIf="experiencePackages.length > 4">
+          <div class="item__text"><span>View all {{ experiencePackages.length }} packages</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <section class="page-section page-section__activities" *ngIf="experienceCategory.length > 0">
+    <div class="container clearfix">
+      <div class="section-header">
+        <h2>Explore Activities</h2>
+        <p>Create your own experience story..</p>
+      </div>
+
+      <div class="activites-list">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor = "let item of experienceCategory">
+            <a routerLink="/category/{{item.slug}}" class="item">
+              <figure [ngStyle]="{'background-image': 'url(' + item.image + ')'}"></figure>
+              <div class="item__content">
+                <h3>{{item.category}}</h3>
+                <p [innerHtml]="item.description"></p>
+                <div class="item__listing" *ngIf="item.total_packages > 0">
+                  <span> {{item.total_packages}}</span> listings
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+</div>
+
+<section >
+
+  <div class="container-fluid" *ngIf="homeBottomBanners.length>0">
+    <div class="home-bottom-slider container clearfix" style="margin-top: -30px;">
+
+      <div class="slide" *ngFor = "let item of homeBottomBanners;let i=index;">
+        <a [href]="item.web_url" target="_blank">
+        <figure  [ngStyle]=" { 'background-image': 'url(' + item.image + ')'} "></figure>
+          <div  class="slide__content">
+            <h2 >{{item.banner_title}}</h2>
+            <p >{{ item.banner_description }}</p>
+          </div>
+        </a>
+      </div>
+    
+    </div>
+  </div>
+   
+  <!-- <div class="container-fluid">
+    <div class="home-bottom-slider container clearfix" style="margin-top: -30px;">
+
+      <div class="slide">
+        
+        <figure  style="background-image: url(&quot;/assets/images/home-slider/img_hero.jpg&quot;);"></figure>
+          <div  class="slide__content">
+            <h2 >Hand piked deals, just for you!</h2>
+            <p >Book incredible things to do around the world.</p>
+          </div>
+      </div>
+      
+      <div class="slide">
+        <figure  style="background-image: url(&quot;/assets/images/home-slider/img_hero_2.jpg&quot;);">
+        </figure>
+        <div  class="slide__content">
+        <h2 >Love where you're going</h2>
+        <p >Book incredible things to do around the world.</p>
+        </div>
+      </div>
+      
+      <div class="slide">
+        <figure  style="background-image: url(&quot;/assets/images/home-slider/img_hero_2.jpg&quot;);"></figure>
+          <div  class="slide__content">
+            <h2 >Love where you're going</h2>
+            <p >Book incredible things to do around the world.</p>
+          </div>
+      </div>
+      <div class="slide">
+        <figure  style="background-image: url(&quot;/assets/images/home-slider/img_hero.jpg&quot;);"></figure>
+          <div  class="slide__content">
+            <h2 >Hand piked deals, just for you!</h2>
+            <p >Book incredible things to do around the world.</p>
+          </div>
+      </div>
+      
+    </div>
+  </div> -->
+</section>
+
+
+
+<!-- <div class="hqbe-activities hidden-md-up" *ngIf="experienceCategory.length > 0">
+  <div class="overlay">
+    <div class="container">
+      <h3>Spice up with these experiences!</h3>
+      <div class="items clearfix">
+        <a *ngFor = "let item of experienceCategory" routerLink="/category/{{item.slug}}" class="item">
+          <img src="{{item.icon}}" alt="{{item.category}}" class="img-fluid" />
+          <span>{{item.category}}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="content">
+  <section class="page-section" *ngIf="experiencePackages.length > 0">
+    <div class="container clearfix">
+      <div class="section-header">
+        <h2>Top Rated Experiences on HQBE</h2>
+        <p class="section-header__info">Unique adventures to break away</p>
+      </div>
+      <div class="package-list package-list__slider slider">
+        
+        <a *ngFor = "let item of experiencePackages.slice(0, 4)"  routerLink="/package-detail/{{item.slug}}" class="item">
+        <figure [ngStyle]="{'background-image': 'url(' + item.image + ')'}"></figure>
+          <div class="item__content">
+            <div class="item__meta item__duration"><i data-feather="clock"></i> {{ item.property_type }}</div>
+            <div class="item__meta item__location"><i data-feather="map-pin"></i> {{item.location}} {{item.country}}</div>
+            <h3>{{ item.package_title }}</h3>
+            <div class="item__price">
+              <div class="regular-price"><span>&#x20b9; {{item.price }}</span></div>
+              <div class="offer-price">&#x20b9; {{item.strike_price}}<span>per person</span></div>
+            </div>
+          </div>
+        </a>
+
+        <a routerLink="/packages/top" class="item item__view-all" *ngIf="experiencePackages.length > 4">
+          <div class="item__text"><span>View all {{ experiencePackages.length }} packages</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <section class="page-section page-section__activities" *ngIf="experienceCategory.length > 0">
+    <div class="container clearfix">
+      <div class="section-header">
+        <h2>Explore Activities</h2>
+        <p>Create your own experience story..</p>
+      </div>
+
+      <div class="activites-list">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor = "let item of experienceCategory">
+            <a routerLink="/category/{{item.slug}}" class="item">
+              <figure [ngStyle]="{'background-image': 'url(' + item.image + ')'}"></figure>
+              <div class="item__content">
+                <h3>{{item.category}}</h3>
+                <p [innerHtml]="item.description"></p>
+                <div class="item__listing" *ngIf="item.total_packages > 0">
+                  <span> {{item.total_packages}}</span> listings
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div> -->

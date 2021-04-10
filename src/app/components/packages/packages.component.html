@@ -1,0 +1,38 @@
+<div class="page-hero" *ngIf="experienceCategory">
+  <figure [ngStyle]=" { 'background-image': 'url(' + experienceCategory.image + ')'} "></figure>
+  <div class="page-hero__content">
+    <div class="container">
+      <h2>{{ experienceCategory.category }}</h2>
+      <p [innerHtml]="experienceCategory.description"></p>
+    </div>
+  </div>
+</div>
+
+<div id="content">
+  <section class="page-section package-listing">
+    <div class="container clearfix">
+      <div class="section-header">
+        <h2>Top Rated Experiences on HQBE</h2>
+        <p>Unique adventures to break away</p>
+      </div>
+      <div class="package-list package-list__stack">
+          
+        <a *ngFor = "let item of experiencePackages"  routerLink="/package-detail/{{item.slug}}" class="item">
+          <figure [ngStyle]=" { 'background-image': 'url(' + item.image + ')'} "></figure>
+          <div class="item__content">
+            <div class="item__meta item__duration"><i data-feather="clock"></i> {{item.duration }}</div>
+            <div class="item__meta item__location"><i data-feather="map-pin"></i> {{item.location}} {{item.country}}</div>
+            <h3>{{ item.package_title }}</h3>
+            <div class="item__price">
+              <div class="regular-price"><span>&#x20b9; {{item.price }}</span></div>
+              <div class="offer-price">&#x20b9; {{item.strike_price}}<span>per person</span></div>
+            </div>
+          </div>
+        </a>
+        
+      </div>
+    </div>
+  </section>
+
+  
+</div>
